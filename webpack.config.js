@@ -3,12 +3,12 @@ const htmlWebpackPlugin = require('html-webpack-plugin'); // 宣告使用插件
 const CopyPlugin = require('copy-webpack-plugin');
 var path = require('path')
 var config = {
-  mode: "development",
+  // mode: "development",
   entry: path.join(__dirname, 'src/router', 'router'),
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'bundle.js',
-    publicPath: process.env.NODE_ENV === 'production' ? '/portfolio/' : '/',
+    publicPath: process.env.NODE_ENV === 'production' ? '/portfolioPage/' : '/',
   },
   devServer: {
     contentBase: path.resolve(__dirname, 'dist'),

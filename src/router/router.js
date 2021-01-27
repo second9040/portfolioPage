@@ -12,8 +12,8 @@ Vue.use(VueRouter)
 
 const router = new VueRouter({
   linkActiveClass: 'active',
-  history: true,
-  mode: 'history',
+  // history: true,
+  mode: 'hash',
   routes: [
     { path: '/', component: cat1 },
     { path: '/cat2', component: cat2 },

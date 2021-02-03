@@ -18,7 +18,7 @@ var config = {
     rules: [
       { test: /\.jsx$/, loader: 'babel-loader', exclude: /node_modules/ },
       { test: /\.vue$/, loader: 'vue-loader' },
-      { test: /\.css$/, loader: ["style-loader", "css-loader"] },
+      { test: /\.s[ac]ss$/, loader: ["style-loader", "css-loader", 'sass-loader'] },
       {
         test: /\.(jpe?g|png|gif|woff|woff2|eot|ttf|svg)(\?[a-z0-9=.]+)?$/,
         loader: 'file-loader',

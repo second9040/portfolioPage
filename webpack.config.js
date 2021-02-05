@@ -18,7 +18,20 @@ var config = {
     rules: [
       { test: /\.jsx$/, loader: 'babel-loader', exclude: /node_modules/ },
       { test: /\.vue$/, loader: 'vue-loader' },
-      { test: /\.s[ac]ss$/, loader: ["style-loader", "css-loader", 'sass-loader'] },
+      { test: /\.s[ac]ss$/, 
+        loader: [
+          "style-loader", 
+          "css-loader", 
+          'sass-loader', {
+            loader: 'sass-resources-loader',
+            options: {
+              resources: [
+                'src/assets/style/scss/*.scss'
+              ]
+            }
+          }
+        ]
+      },
       {
         test: /\.(jpe?g|png|gif|woff|woff2|eot|ttf|svg)(\?[a-z0-9=.]+)?$/,
         loader: 'file-loader',
@@ -40,7 +53,8 @@ var config = {
     }),
     new CopyPlugin([
       { from: './src/assets/images', to: 'image' },
-      { from: './src/assets/style', to: 'css' }
+      { from: './src/assets/style', to: 'css' },
+      { from: './src/assets/style/scss', to: 'scss' }
     ])
   ]
 }

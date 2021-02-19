@@ -4,10 +4,10 @@
     <div class="workList">
       <div class="work">
         <div class="screenShot">
-          <img src="/image/cherry.png" alt="cherry">
+          <img src="image/cherry.png" alt="cherry">
         </div>
         <div class="screenShot mobile">
-          <img src="/image/cherry-m.png" alt="cherry-m">
+          <img src="image/cherry-m.png" alt="cherry-m">
         </div>        
         <div class="intro">
           <div class="text">
@@ -24,10 +24,10 @@
       </div>
       <div class="work">
         <div class="screenShot">
-          <img src="/image/lightbox.png" alt="lightbox">
+          <img src="image/lightbox.png" alt="lightbox">
         </div>
         <div class="screenShot mobile">
-          <img src="/image/lightbox-m.png" alt="lightbox-m">
+          <img src="image/lightbox-m.png" alt="lightbox-m">
         </div>  
         <div class="intro">
           <div class="text">
@@ -43,10 +43,10 @@
       </div>      
       <div class="work">
         <div class="screenShot">
-          <img src="/image/progressBar.png" alt="progressBar">
+          <img src="image/progressBar.png" alt="progressBar">
         </div>
         <div class="screenShot mobile">
-          <img src="/image/progressBar-m.png" alt="progressBar-m">
+          <img src="image/progressBar-m.png" alt="progressBar-m">
         </div>  
         <div class="intro">
           <div class="text">
@@ -63,7 +63,7 @@
       </div> 
       <div class="work">
         <div class="screenShot">
-          <img src="/image/calandar.png" alt="calandar">
+          <img src="image/calandar.png" alt="calandar">
         </div>
         <div class="intro noRWD">
           <div class="text">

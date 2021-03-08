@@ -69,8 +69,11 @@ export default Vue.extend({
 }
 </style>
 <style lang="scss" scoped>
+body {
+  margin: 0
+}
+
 .header {
-  // background: $mainColor;
   color: #fff;
   position: fixed;
   width: 400px;

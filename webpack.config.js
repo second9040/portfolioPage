@@ -18,7 +18,7 @@ var config = {
     rules: [
       { test: /\.jsx$/, loader: 'babel-loader', exclude: /node_modules/ },
       { test: /\.vue$/, loader: 'vue-loader' },
-      { test: /\.s[ac]ss$/, 
+      { test: /\.s?css$/, 
         loader: [
           "style-loader", 
           "css-loader", 

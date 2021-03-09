@@ -67,11 +67,12 @@ export default Vue.extend({
 .header {
   background: var(--mainColor1);
 }
-</style>
-<style lang="scss" scoped>
-body {
+
+body { /* 覆蓋瀏覽器預設樣式(user agent stylesheet) */
   margin: 0
 }
+</style>
+<style lang="scss" scoped>
 
 .header {
   color: #fff;

@@ -108,6 +108,10 @@ body { /* 覆蓋瀏覽器預設樣式(user agent stylesheet) */
       font-size: 24px;
       font-family: 'monospace','sans-serif','-webkit-pictograph';
       padding-top: 15px;
+      @media all and (max-width: 800px) {
+        font-size: 16px;
+        word-spacing: 3px;
+      }
     }
     & p {
       margin: 10px 0;

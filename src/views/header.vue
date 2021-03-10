@@ -3,7 +3,8 @@
     <div class="info">
       <div class="photo"></div>
       <div class="name">
-        <p> Carla | 林鈺琪 </p>
+        <!-- <p> Carla | 林鈺琪 </p> -->
+        <p> 林鈺琪 | Carla </p>
         <p> HTML CSS SCSS RWD</p>
         <p> JAVASCRIPT TYPESCRIPT </p>
         <p> VUE REACT REACT NATIVE</p>
@@ -85,7 +86,7 @@ body { /* 覆蓋瀏覽器預設樣式(user agent stylesheet) */
   position: relative;
   transition: all 0.8s;
   & .info {
-    position: fixed;
+    position: absolute;
     bottom: 0;
     width: 400px;
     & .photo {

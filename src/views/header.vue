@@ -1,10 +1,9 @@
 <template>
-  <div class="header"  :class="{ 'hideHeader': !closeHeader }"> 
+  <div class="header"  :class="{ 'hideHeader': !showHeader }">
     <div class="info">
       <div class="photo"></div>
       <div class="name">
-        <!-- <p> Carla | 林鈺琪 </p> -->
-        <p> 林鈺琪 | Carla </p>
+        <p> Carla | 林鈺琪 </p>
         <p> HTML CSS SCSS RWD</p>
         <p> JAVASCRIPT TYPESCRIPT </p>
         <p> VUE REACT REACT NATIVE</p>
@@ -12,16 +11,16 @@
         <p class="copyright">Copyright © 2021 Carla Lin All rights reserved.</p>
       </div>
     </div>
-    <div class="collapseBtn" @click="clickCollapseBtn" v-if="showCollapseBtn">
+    <div class="collapseBtn" @click="clickCollapseBtn('collapseBtn')" v-if="showCollapseBtn">
       <div class="collapseIcon"></div>
     </div>
     <div class="toolField">
-      <div class="closeBtn" @click="clickCollapseBtn" v-if="showCloseBtn"><i class="fas fa-times"></i></div>
-      <div class="color blue" @click="changeColor('rgb(178, 214, 230)')"></div>
+      <div class="closeBtn" @click="clickCollapseBtn('closeBtn')" v-if="showCloseBtn"><i class="fas fa-times"></i></div>
+      <div class="color purple" @click="changeColor('rgb(117, 144, 206)')"></div>
       <div class="color green" @click="changeColor('rgb(37, 202, 106)')"></div>
       <div class="color pink" @click="changeColor('rgb(238, 148, 148)')"></div>
     </div>
-    <portfolioField :closeHeader="closeHeader"></portfolioField>
+    <portfolioField :showHeader="showHeader"></portfolioField>
   </div>
 </template>
 <script>
@@ -30,7 +29,7 @@ import portfolioField from './portfolioField.vue'
 export default Vue.extend({
   data() {
     return {
-      closeHeader: false,
+      showHeader: false,
       showCollapseBtn: false,
       showCloseBtn: false
     }
@@ -45,13 +44,15 @@ export default Vue.extend({
   methods: {
     checkSize() {
       this.showCollapseBtn = window.innerWidth > 1000 ? false : true
-      this.closeHeader = window.innerWidth > 1000 ? true : false
+      this.showHeader = window.innerWidth > 1000 ? true : false
       this.showCloseBtn = window.innerWidth < 800 ? true : false
       let windowsVH = window.innerHeight / 100;
       document.querySelector('.header').style.setProperty('--vh', windowsVH + 'px');      
     },
-    clickCollapseBtn() {
-      this.closeHeader = !this.closeHeader
+    clickCollapseBtn(btnName) {
+      if ((this.showCloseBtn && btnName == 'closeBtn') || ((!this.showHeader || !this.showCloseBtn) && btnName == 'collapseBtn')) {
+        this.showHeader = !this.showHeader
+      }
     },
     changeColor(color) {
       document.documentElement.style.setProperty(`--mainColor1`, `${color}`);
@@ -64,7 +65,7 @@ export default Vue.extend({
 </script>
 <style lang="css">
 :root {
-  --mainColor1: rgb(178, 214, 230);
+  --mainColor1: rgb(117, 144, 206);
 }
 
 .header {
@@ -72,18 +73,12 @@ export default Vue.extend({
   height: 100vh; /* 給 Safari 以外的瀏覽器讀取 */
   height: calc(var(--vh, 1vh) * 100); /* 處理 safari 100vh 包含網址列跟工具列導致內容會被切到的問題 */
 }
-
-body { /* 覆蓋瀏覽器預設樣式(user agent stylesheet) */
-  margin: 0
-}
 </style>
 <style lang="scss" scoped>
-
 .header {
   color: #fff;
   position: fixed;
-  width: 100%;
-  max-width: 400px;
+  width: 400px;
   top: 0;
   left: 0;
   text-align: center;
@@ -177,8 +172,8 @@ body { /* 覆蓋瀏覽器預設樣式(user agent stylesheet) */
       &:hover {
         cursor: pointer;
       }
-      &.blue {
-        background: rgb(178, 214, 230);
+      &.purple {
+        background: rgb(117, 144, 206);
         right: 40px;
       }
       &.green {
@@ -209,6 +204,7 @@ body { /* 覆蓋瀏覽器預設樣式(user agent stylesheet) */
       & .collapseBtn {
         left: 90%;
         opacity: 0;
+        width: 0;
         &:hover {
           cursor: initial;
         }

@@ -1,5 +1,5 @@
 <template>
-  <div class="portfolioField" :class="{ 'closeHeader': !closeHeader }">
+  <div class="portfolioField" :class="{ 'closeHeader': !showHeader }" @scroll="scrollEvent($event,'')">
     <p class="title">網頁開發練習與作品</p> 
     <div class="workList" :class="{ 'mobileStyle': mobileSize }">
       <div class="work" v-for="(item,key,index) in workList" :key="index">
@@ -20,13 +20,14 @@
         </div>          
       </div>
     </div>
+    <div class="goTop" :class="{'hide': hideTopFlag() }" @click="scrollToTop"><i class="fas fa-arrow-up"></i></div>
   </div>
 </template>
 <script>
 import Vue from 'vue';
 export default Vue.extend({
   props: {
-    closeHeader: {
+    showHeader: {
       type: Boolean,
       require: true
     }
@@ -40,7 +41,8 @@ export default Vue.extend({
         'progressBar': [false,false,['進度條','可長按或手動輸入設定進度','動畫呈現賦值改變狀態'],['React','state','RWD'],'https://second9040.github.io/portfolio/[React]%20ProgressBar/ProgressBar.html','https://github.com/second9040/portfolio/tree/master/%5BReact%5D%20ProgressBar'],
         'calandar': [false,false,['日曆結合待辦清單'],['React','functional component'],'https://second9040.github.io/portfolio/%5BReact%5D%20SimpleToDoList/SimpleToDoList.html','https://github.com/second9040/portfolio/tree/master/%5BReact%5D%20SimpleToDoList'],
       }, 
-      mobileSize: false
+      mobileSize: false,
+      scrollEventObj: {}
     }
   },
   mounted() { 
@@ -50,6 +52,7 @@ export default Vue.extend({
   methods: {
     checkSize() {
       this.mobileSize = window.innerWidth > 1500 ? false: true
+      this.hideTopFlag()
     },
     checkText(text) {
       return typeof text == 'string' ? true : false
@@ -62,6 +65,32 @@ export default Vue.extend({
     },
     openUrl(link) {
       window.open(link)
+    },
+    scrollToTop() {
+      if (this.scrollEventObj.target) {
+        this.scrollEvent(this.scrollEventObj, 'goTop')
+      }
+    },
+    scrollEvent(event, para) {
+      if (!this.scrollEventObj.target) {
+        this.scrollEventObj = event
+      }
+      if (event.target && para == 'goTop' && event.target.scrollTop > 0) {
+        window.setInterval(()=>{
+          event.target.scrollTop -=20
+        },5)
+      }
+      if (event.target.scrollTop == 0) {
+        for (var i = 1; i < 99; i++) {
+          window.clearInterval(i);
+        }
+      }
+    },
+    hideTopFlag() {
+      if(!this.showHeader || window.innerWidth > 799) {
+        return false
+      }
+      return true
     }
   },
   beforeDestroy() {
@@ -174,7 +203,7 @@ export default Vue.extend({
         & .text {
           width: 100%;
           text-align: center;
-          font-size: 1.6em;
+          font-size: 1.4em;
           font-weight: bold;
           margin: 20px;
           & p span {
@@ -245,6 +274,31 @@ export default Vue.extend({
         margin-right: 0;
       }
     }    
+  }
+  & .goTop {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 30px;
+    color: #fff;
+    background: #888;
+    opacity: 0.7;
+    border-radius: 8px;
+    transition: opacity 0.2s, background 0.2s, bottom 0.8s;
+    line-height: 30px;
+    text-align: center;
+    &:hover {
+      opacity: 1;
+      cursor: pointer;
+      background: var(--mainColor1);
+    }
+    &.hide {
+      bottom: -30px
+    }
+    & i { 
+      display: inline-block;
+      vertical-align: middle;
+    }
   }
 }  
 @keyframes fadeInUp {

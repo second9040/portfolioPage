@@ -3,8 +3,8 @@
     <div class="info">
       <div class="photo"></div>
       <div class="name">
-        <!-- <p> Carla | 林鈺琪 </p> -->
-        <p> 林鈺琪 | Carla </p>
+        <p> Carla | 林鈺琪 </p>
+        <!-- <p> 林鈺琪 | Carla </p> -->
         <p> HTML CSS SCSS RWD</p>
         <p> JAVASCRIPT TYPESCRIPT </p>
         <p> VUE REACT REACT NATIVE</p>
@@ -155,6 +155,7 @@ body { /* 覆蓋瀏覽器預設樣式(user agent stylesheet) */
       border-radius: 50px;
       border: solid 2px;
       padding: 5px 3px 2px;
+      top: 0;
       right: 0;
       margin: 10px;
       &:hover {
@@ -168,6 +169,7 @@ body { /* 覆蓋瀏覽器預設樣式(user agent stylesheet) */
       border-radius: 50px;
       margin: 15px;
       border: solid 1px;
+      top: 0;
       &:hover {
         cursor: pointer;
       }

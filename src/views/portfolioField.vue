@@ -176,6 +176,7 @@ export default Vue.extend({
           text-align: center;
           font-size: 1.6em;
           font-weight: bold;
+          margin: 20px;
           & p span {
             margin: 5px;
             padding: 5px;
@@ -218,7 +219,6 @@ export default Vue.extend({
   }
   &.closeHeader {
     transition: all 0.8s;
-    // display: initial;
     width: 90%;
     left: 5%;
     right: 5%;

@@ -3,8 +3,8 @@
     <div class="info">
       <div class="photo"></div>
       <div class="name">
-        <p> Carla | 林鈺琪 </p>
-        <!-- <p> 林鈺琪 | Carla </p> -->
+        <!-- <p> Carla | 林鈺琪 </p> -->
+        <p> 林鈺琪 | Carla </p>
         <p> HTML CSS SCSS RWD</p>
         <p> JAVASCRIPT TYPESCRIPT </p>
         <p> VUE REACT REACT NATIVE</p>
@@ -47,6 +47,8 @@ export default Vue.extend({
       this.showCollapseBtn = window.innerWidth > 1000 ? false : true
       this.closeHeader = window.innerWidth > 1000 ? true : false
       this.showCloseBtn = window.innerWidth < 800 ? true : false
+      let windowsVH = window.innerHeight / 100;
+      document.querySelector('.header').style.setProperty('--vh', windowsVH + 'px');      
     },
     clickCollapseBtn() {
       this.closeHeader = !this.closeHeader
@@ -67,6 +69,8 @@ export default Vue.extend({
 
 .header {
   background: var(--mainColor1);
+  height: 100vh; /* 給 Safari 以外的瀏覽器讀取 */
+  height: calc(var(--vh, 1vh) * 100); /* 處理 safari 100vh 包含網址列跟工具列導致內容會被切到的問題 */
 }
 
 body { /* 覆蓋瀏覽器預設樣式(user agent stylesheet) */
@@ -78,8 +82,8 @@ body { /* 覆蓋瀏覽器預設樣式(user agent stylesheet) */
 .header {
   color: #fff;
   position: fixed;
-  width: 400px;
-  height: 100vh;
+  width: 100%;
+  max-width: 400px;
   top: 0;
   left: 0;
   text-align: center;

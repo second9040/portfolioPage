@@ -107,7 +107,7 @@ body { /* 覆蓋瀏覽器預設樣式(user agent stylesheet) */
     & .name {
       padding: 20px;
       font-size: 24px;
-      font-family: 'monospace','sans-serif','-webkit-pictograph';
+      font-family: 'Helvetica';
       padding-top: 15px;
       @media all and (max-width: 800px) {
         font-size: 16px;

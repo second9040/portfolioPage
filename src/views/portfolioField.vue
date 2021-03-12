@@ -88,7 +88,7 @@ export default Vue.extend({
           this.test = event.target.scrollingElement.scrollTop
         },5)
       }
-      if (event && event.target.scrollingElement.scrollTop == 0) {
+      if (event && event.target.scrollingElement.scrollTop <= 0) {
         this.hideTopFlag = true
         for (var i = 1; i < 99; i++) {
           window.clearInterval(i);

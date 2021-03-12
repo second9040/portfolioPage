@@ -23,7 +23,7 @@
       </div>
     </div>
     </div>
-    <div class="goTop" :class="{'hide': hideTopFlag }" @click="scrollToTop"><i class="fas fa-arrow-up"></i>{{test}}</div>
+    <div class="goTop" :class="{'hide': hideTopFlag }" @click="scrollToTop">{{test}}<i class="fas fa-arrow-up"></i></div>
   </div>
 </template>
 <script>
@@ -88,7 +88,7 @@ export default Vue.extend({
       // }
       if (event.target.scrollingElement.scrollTop < 1) {
         this.hideTopFlag = true
-        for (let i = 1; i < 99; i++) {
+        for (let i = 1; i < 9999; i++) {
           window.clearInterval(i);
         }
       } else {

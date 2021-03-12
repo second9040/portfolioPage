@@ -23,7 +23,7 @@
       </div>
     </div>
     </div>
-    <div class="goTop" :class="{'hide': hideTopFlag }" @click="scrollToTop">{{test}}<i class="fas fa-arrow-up"></i></div>
+    <div class="goTop" :class="{'hide': hideTopFlag }" @click="scrollToTop"><i class="fas fa-arrow-up"></i>{{test}}</div>
   </div>
 </template>
 <script>
@@ -79,21 +79,20 @@ export default Vue.extend({
       }, 5)
     },
     scrollEvent(event) {
-      this.hideTopFlag = false
-      if (!this.scrollEventObj.target) {
-        this.scrollEventObj = event
-      }
+      this.scrollEventObj = event 
       // if (para == 'goTop') {
       //   window.setInterval(() => {
       //     event.target.scrollingElement.scrollTop -= 20
       //     this.test = event.target.scrollingElement.scrollTop
       //   }, 5)
       // }
-      if (!event.target || event.target.scrollingElement.scrollTop < 1) {
+      if (event.target.scrollingElement.scrollTop < 1) {
         this.hideTopFlag = true
         for (let i = 1; i < 99; i++) {
           window.clearInterval(i);
         }
+      } else {
+        this.hideTopFlag = false 
       }
     },
     hideTopCheck() {

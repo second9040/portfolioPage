@@ -5,7 +5,7 @@
     <p class="title">網頁開發練習與作品</p> 
     <div class="workList" :class="{ 'mobileStyle': mobileSize }">
       <div class="work" v-for="(item,key,index) in workList" :key="index">
-        <div class="screenShot" :class="key"></div>
+        <div class="screenShot" :style="imgPath(key)"></div>
         <div class="mask" :class="{'showText': item[0], 'fadeOutText': !item[0], 'hideText': !item[1] }">
           <div class="text">
             <p v-for="(text,index2) in item[2]" :key="index2">{{ text }}</p>
@@ -23,7 +23,7 @@
       </div>
     </div>
     </div>
-    <div class="goTop" :class="{'hide': hideTopFlag }" @click="scrollToTop">{{test}}<i class="fas fa-arrow-up"></i></div>
+    <div class="goTop" :class="{'hide': hideTopFlag }" @click="scrollToTop"><i class="fas fa-arrow-up"></i></div>
   </div>
 </template>
 <script>
@@ -40,13 +40,13 @@ export default Vue.extend({
         'cherry': [false,false,['日本賞櫻推薦','一頁式 landing page','輪播功能 > swiper'],['Vue.js','css','RWD'],'https://second9040.github.io/portfolio/%5BVue%5D%20Cheery%20in%20Japan/cherryJapan.html','https://github.com/second9040/portfolio/tree/master/%5BVue%5D%20Cheery%20in%20Japan'],
         'calandar': [false,false,['日曆結合待辦清單'],['React','functional component'],'https://second9040.github.io/portfolio/%5BReact%5D%20SimpleToDoList/SimpleToDoList.html','https://github.com/second9040/portfolio/tree/master/%5BReact%5D%20SimpleToDoList'],
         'progressBar': [false,false,['進度條','可長按或手動輸入設定進度','動畫呈現賦值改變狀態'],['React','state','RWD'],'https://second9040.github.io/portfolio/[React]%20ProgressBar/ProgressBar.html','https://github.com/second9040/portfolio/tree/master/%5BReact%5D%20ProgressBar'],
+        'drawDivGame': [false,false,['拖曳小遊戲','使用原生 js 事件完成拖曳效果'],['javascript','onmouseup ','onmouseup '],'https://second9040.github.io/test0917/DragDIV.html','https://github.com/second9040/test0917'],
         'lightbox': [false,false,['LightBox','幻燈片 > swiper'],['Vue.js','css','RWD'],'https://second9040.github.io/portfolio/[Vue]%20LightBox/LightBox.html','https://github.com/second9040/portfolio/tree/master/%5BVue%5D%20LightBox'],
       }, 
       mobileSize: false,
       scrollEventObj: {},
       showHeader: false,
       hideTopFlag: true,
-      test: 0
     }
   },
   mounted() { 
@@ -75,17 +75,10 @@ export default Vue.extend({
     scrollToTop() {
       window.setInterval(() => {
         this.scrollEventObj.target.scrollingElement.scrollTop -= 20
-        this.test = this.scrollEventObj.target.scrollingElement.scrollTop
       }, 5)
     },
     scrollEvent(event) {
       this.scrollEventObj = event 
-      // if (para == 'goTop') {
-      //   window.setInterval(() => {
-      //     event.target.scrollingElement.scrollTop -= 20
-      //     this.test = event.target.scrollingElement.scrollTop
-      //   }, 5)
-      // }
       if (event.target.scrollingElement.scrollTop < 1) {
         this.hideTopFlag = true
         for (let i = 1; i < 9999; i++) {
@@ -96,7 +89,7 @@ export default Vue.extend({
       }
     },
     hideTopCheck() {
-      if((!this.showHeader || window.innerWidth > 799) && this.scrollEventObj.target) {
+      if ((!this.showHeader || window.innerWidth > 799) && this.scrollEventObj.target) {
         this.hideTopFlag = false
       } else {
         this.hideTopFlag = true
@@ -104,6 +97,9 @@ export default Vue.extend({
     },
     clickHeader() {
       this.showHeader = !this.showHeader
+    },
+    imgPath(name) {
+      return "backgroundImage: url(" + `image/${name}.png` + ")"
     }
   },
   beforeDestroy() {
@@ -117,7 +113,6 @@ export default Vue.extend({
   display: flex;
 }
 .portfolioField {
-  // position: absolute;
   top: 0;
   overflow: auto;
   margin-left: 400px;
@@ -163,21 +158,6 @@ export default Vue.extend({
         background-size: cover;
         background-position: center;
         box-shadow: 1px 3px 5px var(--mainColor1);
-        &.cherry {
-          background-image: url('./../assets/images/cherry.png');
-        }
-        &.lightbox {
-          background-image: url('./../assets/images/lightbox.png');
-        }
-        &.progressBar {
-          background-image: url('./../assets/images/progressBar.png');
-        }
-        &.calandar {
-          background-image: url('./../assets/images/calandar.png');
-        }
-        &.carlanote {
-          background-image: url('./../assets/images/carlanote.png');
-        }
       }
       & .link {
         position :absolute;

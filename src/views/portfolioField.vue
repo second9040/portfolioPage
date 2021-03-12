@@ -23,7 +23,7 @@
       </div>
     </div>
     </div>
-    <div class="goTop" :class="{'hide': hideTopFlag }" @click="scrollToTop"><i class="fas fa-arrow-up"></i></div>
+    <div class="goTop" :class="{'hide': hideTopFlag }" @click="scrollToTop"><i class="fas fa-arrow-up"></i>{{test}}</div>
   </div>
 </template>
 <script>
@@ -45,7 +45,8 @@ export default Vue.extend({
       mobileSize: false,
       scrollEventObj: {},
       showHeader: false,
-      hideTopFlag: true
+      hideTopFlag: true,
+      test: 0
     }
   },
   mounted() { 
@@ -84,6 +85,7 @@ export default Vue.extend({
       if (para == 'goTop') {
         window.setInterval(()=>{
           event.target.scrollingElement.scrollTop -=20
+          this.test = event.target.scrollingElement.scrollTop
         },5)
       }
       if (event && event.target.scrollingElement.scrollTop == 0) {
@@ -296,13 +298,13 @@ export default Vue.extend({
     position: fixed;
     bottom: 20px;
     right: 20px;
-    width: 30px;
+    width: 50px;
     color: #fff;
     background: #888;
     opacity: 0.7;
     border-radius: 8px;
     transition: opacity 0.2s, background 0.2s, bottom 0.8s;
-    line-height: 30px;
+    line-height: 50px;
     text-align: center;
     &:hover, &:active {
       opacity: 1;
@@ -310,11 +312,12 @@ export default Vue.extend({
       background: var(--mainColor1);
     }
     &.hide {
-      bottom: -30px
+      bottom: -50px
     }
     & i { 
       display: inline-block;
       vertical-align: middle;
+      font-size: 25px;
     }
   }
 @keyframes fadeInUp {

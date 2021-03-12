@@ -23,7 +23,7 @@
       </div>
     </div>
     </div>
-    <div class="goTop" :class="{'hide': hideTopFlag }" @click="scrollToTop"><i class="fas fa-arrow-up"></i>{{test}}</div>
+    <div class="goTop" :class="{'hide': hideTopFlag }" @click="scrollToTop">{{test}}<i class="fas fa-arrow-up"></i></div>
   </div>
 </template>
 <script>
@@ -73,24 +73,25 @@ export default Vue.extend({
       window.open(link)
     },
     scrollToTop() {
-      if (this.scrollEventObj.target) {
-        this.scrollEvent(this.scrollEventObj, 'goTop')
-      }
+      window.setInterval(() => {
+        this.scrollEventObj.target.scrollingElement.scrollTop -= 20
+        this.test = this.scrollEventObj.target.scrollingElement.scrollTop
+      }, 5)
     },
-    scrollEvent(event, para) {
+    scrollEvent(event) {
       this.hideTopFlag = false
       if (!this.scrollEventObj.target) {
         this.scrollEventObj = event
       }
-      if (para == 'goTop') {
-        window.setInterval(()=>{
-          event.target.scrollingElement.scrollTop -=20
-          this.test = event.target.scrollingElement.scrollTop
-        },5)
-      }
-      if (event && event.target.scrollingElement.scrollTop <= 0) {
+      // if (para == 'goTop') {
+      //   window.setInterval(() => {
+      //     event.target.scrollingElement.scrollTop -= 20
+      //     this.test = event.target.scrollingElement.scrollTop
+      //   }, 5)
+      // }
+      if (!event.target || event.target.scrollingElement.scrollTop < 1) {
         this.hideTopFlag = true
-        for (var i = 1; i < 99; i++) {
+        for (let i = 1; i < 99; i++) {
           window.clearInterval(i);
         }
       }
@@ -108,7 +109,7 @@ export default Vue.extend({
   },
   beforeDestroy() {
     window.removeEventListener('resize', this.checkSize)
-    window.removeEventListener('scroll', this.scrollEvent())
+    window.removeEventListener('scroll', this.scrollEvent)
   }
 })
 </script>

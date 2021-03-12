@@ -1,5 +1,7 @@
 <template>
-  <div class="portfolioField" :class="{ 'closeHeader': !showHeader }" @scroll="scrollEvent($event,'')">
+<div class="container">
+  <isheader :showHeader="showHeader" @clickBtn="clickHeader"></isheader>
+  <div class="portfolioField" :class="{ 'closeHeader': !showHeader }">
     <p class="title">網頁開發練習與作品</p> 
     <div class="workList" :class="{ 'mobileStyle': mobileSize }">
       <div class="work" v-for="(item,key,index) in workList" :key="index">
@@ -20,17 +22,16 @@
         </div>          
       </div>
     </div>
-    <div class="goTop" :class="{'hide': hideTopFlag() }" @click="scrollToTop"><i class="fas fa-arrow-up"></i></div>
+    </div>
+    <div class="goTop" :class="{'hide': hideTopFlag }" @click="scrollToTop"><i class="fas fa-arrow-up"></i></div>
   </div>
 </template>
 <script>
 import Vue from 'vue';
+import isheader from './header.vue'
 export default Vue.extend({
-  props: {
-    showHeader: {
-      type: Boolean,
-      require: true
-    }
+  components: {
+    isheader
   },
   data() {
     return {
@@ -42,17 +43,21 @@ export default Vue.extend({
         'calandar': [false,false,['日曆結合待辦清單'],['React','functional component'],'https://second9040.github.io/portfolio/%5BReact%5D%20SimpleToDoList/SimpleToDoList.html','https://github.com/second9040/portfolio/tree/master/%5BReact%5D%20SimpleToDoList'],
       }, 
       mobileSize: false,
-      scrollEventObj: {}
+      scrollEventObj: {},
+      showHeader: false,
+      hideTopFlag: true
     }
   },
   mounted() { 
+    window.addEventListener('scroll', this.scrollEvent)
     window.addEventListener('resize', this.checkSize)
     this.checkSize()
   }, 
   methods: {
     checkSize() {
       this.mobileSize = window.innerWidth > 1500 ? false: true
-      this.hideTopFlag()
+      this.showHeader = window.innerWidth > 1000 ? true : false
+      this.hideTopCheck()
     },
     checkText(text) {
       return typeof text == 'string' ? true : false
@@ -72,42 +77,53 @@ export default Vue.extend({
       }
     },
     scrollEvent(event, para) {
+      this.hideTopFlag = false
       if (!this.scrollEventObj.target) {
         this.scrollEventObj = event
       }
-      if (event.target && para == 'goTop' && event.target.scrollTop > 0) {
+      if (para == 'goTop') {
         window.setInterval(()=>{
-          event.target.scrollTop -=20
+          event.target.scrollingElement.scrollTop -=20
         },5)
       }
-      if (event.target.scrollTop == 0) {
+      if (event && event.target.scrollingElement.scrollTop == 0) {
+        this.hideTopFlag = true
         for (var i = 1; i < 99; i++) {
           window.clearInterval(i);
         }
       }
     },
-    hideTopFlag() {
-      if(!this.showHeader || window.innerWidth > 799) {
-        return false
+    hideTopCheck() {
+      if((!this.showHeader || window.innerWidth > 799) && this.scrollEventObj.target) {
+        this.hideTopFlag = false
+      } else {
+        this.hideTopFlag = true
       }
-      return true
+    },
+    clickHeader() {
+      this.showHeader = !this.showHeader
     }
   },
   beforeDestroy() {
     window.removeEventListener('resize', this.checkSize)
+    window.removeEventListener('scroll', this.scrollEvent())
   }
 })
 </script>
 <style lang="scss" scoped>
+.container {
+  display: flex;
+}
 .portfolioField {
-  position: fixed;
+  // position: absolute;
+  top: 0;
   overflow: auto;
   margin-left: 400px;
   width: calc(95% - 400px);
   height: 100%;
   padding: 0 2.5%;
+  transition: all 0.8s;
   @media all and (max-width: 800px) {
-    transition: all 0.8s;
     left: 50%;
   }
   & .title {
@@ -248,9 +264,9 @@ export default Vue.extend({
   }
   &.closeHeader {
     transition: all 0.8s;
-    width: 90%;
-    left: 5%;
-    right: 5%;
+    width: 95%;
+    left: 0;
+    right: 0;
     margin: 0;
     @media all and (min-width: 1000px) {
       width: 80%;
@@ -275,7 +291,8 @@ export default Vue.extend({
       }
     }    
   }
-  & .goTop {
+}  
+  .goTop {
     position: fixed;
     bottom: 20px;
     right: 20px;
@@ -300,7 +317,6 @@ export default Vue.extend({
       vertical-align: middle;
     }
   }
-}  
 @keyframes fadeInUp {
   0% {
     transform: translateY(100%);

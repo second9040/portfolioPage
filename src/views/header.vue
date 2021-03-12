@@ -1,5 +1,5 @@
 <template>
-  <div class="header"  :class="{ 'hideHeader': !showHeader }">
+  <div class="header"  :class="{ 'hideHeader': !showHeader }"> 
     <div class="info">
       <div class="photo"></div>
       <div class="name">
@@ -20,16 +20,13 @@
       <div class="color green" @click="changeColor('rgb(37, 202, 106)')"></div>
       <div class="color pink" @click="changeColor('rgb(238, 148, 148)')"></div>
     </div>
-    <portfolioField :showHeader="showHeader"></portfolioField>
   </div>
 </template>
 <script>
 import Vue from 'vue';
-import portfolioField from './portfolioField.vue'
 export default Vue.extend({
   data() {
     return {
-      showHeader: false,
       showCollapseBtn: false,
       showCloseBtn: false
     }
@@ -38,20 +35,22 @@ export default Vue.extend({
     window.addEventListener('resize', this.checkSize)
     this.checkSize()
   },
-  components: {
-    portfolioField
-  },
+  props: {
+    showHeader: {
+      type: Boolean,
+      require: true
+    }
+  },  
   methods: {
     checkSize() {
       this.showCollapseBtn = window.innerWidth > 1000 ? false : true
-      this.showHeader = window.innerWidth > 1000 ? true : false
       this.showCloseBtn = window.innerWidth < 800 ? true : false
       let windowsVH = window.innerHeight / 100;
       document.querySelector('.header').style.setProperty('--vh', windowsVH + 'px');      
     },
     clickCollapseBtn(btnName) {
       if ((this.showCloseBtn && btnName == 'closeBtn') || ((!this.showHeader || !this.showCloseBtn) && btnName == 'collapseBtn')) {
-        this.showHeader = !this.showHeader
+        this.$emit('clickBtn')
       }
     },
     changeColor(color) {
@@ -82,8 +81,8 @@ export default Vue.extend({
   top: 0;
   left: 0;
   text-align: center;
-  position: relative;
   transition: all 0.8s;
+  z-index: 100;
   & .info {
     position: absolute;
     bottom: 0;
@@ -188,7 +187,6 @@ export default Vue.extend({
   }
   &.hideHeader {
     left: -400px;    
-    transition: all 0.8s;
     & .collapseIcon {
       margin: 10px 0 0 20px;
       border-left-color: #fff;

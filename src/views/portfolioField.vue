@@ -38,9 +38,9 @@ export default Vue.extend({
       workList: {
         'carlanote': [false,false,['技術筆記','使用 wordpress 架設','工作或 sideproject 中用到的技術整理筆記'],[],'https://carlanote.com/',''],
         'cherry': [false,false,['日本賞櫻推薦','一頁式 landing page','輪播功能 > swiper'],['Vue.js','css','RWD'],'https://second9040.github.io/portfolio/%5BVue%5D%20Cheery%20in%20Japan/cherryJapan.html','https://github.com/second9040/portfolio/tree/master/%5BVue%5D%20Cheery%20in%20Japan'],
-        'lightbox': [false,false,['LightBox','幻燈片 > swiper'],['Vue.js','css','RWD'],'https://second9040.github.io/portfolio/[Vue]%20LightBox/LightBox.html','https://github.com/second9040/portfolio/tree/master/%5BVue%5D%20LightBox'],
-        'progressBar': [false,false,['進度條','可長按或手動輸入設定進度','動畫呈現賦值改變狀態'],['React','state','RWD'],'https://second9040.github.io/portfolio/[React]%20ProgressBar/ProgressBar.html','https://github.com/second9040/portfolio/tree/master/%5BReact%5D%20ProgressBar'],
         'calandar': [false,false,['日曆結合待辦清單'],['React','functional component'],'https://second9040.github.io/portfolio/%5BReact%5D%20SimpleToDoList/SimpleToDoList.html','https://github.com/second9040/portfolio/tree/master/%5BReact%5D%20SimpleToDoList'],
+        'progressBar': [false,false,['進度條','可長按或手動輸入設定進度','動畫呈現賦值改變狀態'],['React','state','RWD'],'https://second9040.github.io/portfolio/[React]%20ProgressBar/ProgressBar.html','https://github.com/second9040/portfolio/tree/master/%5BReact%5D%20ProgressBar'],
+        'lightbox': [false,false,['LightBox','幻燈片 > swiper'],['Vue.js','css','RWD'],'https://second9040.github.io/portfolio/[Vue]%20LightBox/LightBox.html','https://github.com/second9040/portfolio/tree/master/%5BVue%5D%20LightBox'],
       }, 
       mobileSize: false,
       scrollEventObj: {},
@@ -304,7 +304,7 @@ export default Vue.extend({
     transition: opacity 0.2s, background 0.2s, bottom 0.8s;
     line-height: 30px;
     text-align: center;
-    &:hover {
+    &:hover, &:active {
       opacity: 1;
       cursor: pointer;
       background: var(--mainColor1);

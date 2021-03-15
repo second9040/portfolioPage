@@ -4,6 +4,9 @@
       <div class="photo"></div>
       <div class="name">
         <p> Carla | 林鈺琪 </p>
+        <div v-if="PCSize" class="workLink">
+          <p v-for="(item,key) in workList" :key="key">{{item[2][0]}}</p>
+        </div>
         <p> HTML CSS SCSS RWD</p>
         <p> JAVASCRIPT TYPESCRIPT </p>
         <p> VUE REACT REACT NATIVE</p>
@@ -28,23 +31,28 @@ export default Vue.extend({
   data() {
     return {
       showCollapseBtn: false,
-      showCloseBtn: false
+      showCloseBtn: false,
+      PCSize: false
     }
   },
   mounted() {
     window.addEventListener('resize', this.checkSize)
     this.checkSize()
+    console.log('header!')
+    console.log(this.workList)
   },
   props: {
     showHeader: {
       type: Boolean,
       require: true
-    }
+    },
+    workList: {}
   },  
   methods: {
     checkSize() {
       this.showCollapseBtn = window.innerWidth > 1000 ? false : true
       this.showCloseBtn = window.innerWidth < 800 ? true : false
+      this.PCSize = window.innerWidth > 420 && window.innerHeight > 840 ? true : false
       let windowsVH = window.innerHeight / 100;
       document.querySelector('.header').style.setProperty('--vh', windowsVH + 'px');      
     },
@@ -97,7 +105,7 @@ export default Vue.extend({
       background-size: cover;
       background-position: bottom;
       opacity: 0.7;
-      @media all and (max-width: 800px) {
+      @media all and (max-width: 420px) {
         width: 150px;
         height: 150px;
       }
@@ -107,7 +115,7 @@ export default Vue.extend({
       font-size: 24px;
       font-family: 'Helvetica';
       padding-top: 15px;
-      @media all and (max-width: 800px) {
+      @media all and (max-width: 420px) {
         font-size: 16px;
         word-spacing: 3px;
       }
@@ -117,6 +125,9 @@ export default Vue.extend({
       &.copyright {
         margin-top: 50px;
       }
+    }
+    & .workLink {
+      margin: 20px 0;
     }
   }
   & .collapseBtn {

@@ -1,6 +1,6 @@
 <template>
 <div class="container">
-  <isheader :showHeader="showHeader" @clickBtn="clickHeader"></isheader>
+  <isheader :showHeader="showHeader" :workList="workList" @clickBtn="clickHeader"></isheader>
   <div class="portfolioField" :class="{ 'closeHeader': !showHeader }">
     <p class="title">網頁開發練習與作品</p> 
     <div class="workList" :class="{ 'mobileStyle': mobileSize }">
@@ -41,7 +41,7 @@ export default Vue.extend({
         'calandar': [false,false,['日曆結合待辦清單'],['React','functional component'],'https://second9040.github.io/portfolio/%5BReact%5D%20SimpleToDoList/SimpleToDoList.html','https://github.com/second9040/portfolio/tree/master/%5BReact%5D%20SimpleToDoList'],
         'progressBar': [false,false,['進度條','可長按或手動輸入設定進度','動畫呈現賦值改變狀態'],['React','state','RWD'],'https://second9040.github.io/portfolio/[React]%20ProgressBar/ProgressBar.html','https://github.com/second9040/portfolio/tree/master/%5BReact%5D%20ProgressBar'],
         'drawDivGame': [false,false,['拖曳小遊戲','使用原生 js 事件完成拖曳效果'],['javascript','onmouseup ','onmouseup '],'https://second9040.github.io/test0917/DragDIV.html','https://github.com/second9040/test0917'],
-        'lightbox': [false,false,['LightBox','幻燈片 > swiper'],['Vue.js','css','RWD'],'https://second9040.github.io/portfolio/[Vue]%20LightBox/LightBox.html','https://github.com/second9040/portfolio/tree/master/%5BVue%5D%20LightBox'],
+        'lightbox': [false,false,['簡易燈箱','幻燈片 > swiper'],['Vue.js','css','RWD'],'https://second9040.github.io/portfolio/[Vue]%20LightBox/LightBox.html','https://github.com/second9040/portfolio/tree/master/%5BVue%5D%20LightBox'],
       }, 
       mobileSize: false,
       scrollEventObj: {},

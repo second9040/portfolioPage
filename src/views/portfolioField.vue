@@ -123,6 +123,9 @@ export default Vue.extend({
   @media all and (max-width: 800px) {
     left: 50%;
   }
+  &::-webkit-scrollbar {
+    display: none;
+  }
   & .title {
     margin: 0;
     text-align: center;

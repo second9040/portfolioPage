@@ -37,11 +37,12 @@ export default Vue.extend({
     return {
       workList: {
         'carlanote': [false,false,['技術筆記','使用 wordpress 架設','工作或 sideproject 中用到的技術整理筆記'],[],'https://carlanote.com/',''],
-        'cherry': [false,false,['日本賞櫻推薦','一頁式 landing page','輪播功能 > swiper'],['Vue.js','css','RWD'],'https://second9040.github.io/portfolio/%5BVue%5D%20Cheery%20in%20Japan/cherryJapan.html','https://github.com/second9040/portfolio/tree/master/%5BVue%5D%20Cheery%20in%20Japan'],
+        'cherry': [false,false,['日本賞櫻推薦','一頁式 landing page','輪播功能 > swiper'],['Vue.js','RWD','CSS3'],'https://second9040.github.io/portfolio/%5BVue%5D%20Cheery%20in%20Japan/cherryJapan.html','https://github.com/second9040/portfolio/tree/master/%5BVue%5D%20Cheery%20in%20Japan'],
         'calandar': [false,false,['日曆結合待辦清單'],['React','functional component'],'https://second9040.github.io/portfolio/%5BReact%5D%20SimpleToDoList/SimpleToDoList.html','https://github.com/second9040/portfolio/tree/master/%5BReact%5D%20SimpleToDoList'],
+        'jqStudynote': [false,false,['jQuery學習+實做筆記'],['jQuery','bootstrap','目錄索引導航'],'https://second9040.github.io/portfolio/[JQuery]%20Bootstrap%20+%20jQuery%20note/Bootstrap%20+%20jQuery%20note.html','https://github.com/second9040/portfolio/tree/master/%5BJQuery%5D%20Bootstrap%20%2B%20jQuery%20note'],
         'progressBar': [false,false,['進度條','可長按或手動輸入設定進度','動畫呈現賦值改變狀態'],['React','state','RWD'],'https://second9040.github.io/portfolio/[React]%20ProgressBar/ProgressBar.html','https://github.com/second9040/portfolio/tree/master/%5BReact%5D%20ProgressBar'],
         'drawDivGame': [false,false,['拖曳小遊戲','使用原生 js 事件完成拖曳效果'],['javascript','onmouseup ','onmouseup '],'https://second9040.github.io/test0917/DragDIV.html','https://github.com/second9040/test0917'],
-        'lightbox': [false,false,['簡易燈箱','幻燈片 > swiper'],['Vue.js','css','RWD'],'https://second9040.github.io/portfolio/[Vue]%20LightBox/LightBox.html','https://github.com/second9040/portfolio/tree/master/%5BVue%5D%20LightBox'],
+        'lightbox': [false,false,['簡易燈箱','幻燈片 > swiper'],['Vue.js','RWD','CSS3'],'https://second9040.github.io/portfolio/[Vue]%20LightBox/LightBox.html','https://github.com/second9040/portfolio/tree/master/%5BVue%5D%20LightBox'],
       }, 
       mobileSize: false,
       scrollEventObj: {},
@@ -216,6 +217,7 @@ export default Vue.extend({
             color: #fff;
             font-weight: bold;
             display: inline-block;
+            line-height: 1.4em;
             &:first-child {
               margin-left: 0;
             }

@@ -28,7 +28,9 @@
  
  * jQuery 學習 + 實做筆記 <a href="https://github.com/second9040/portfolio/tree/master/%5BJQuery%5D%20Bootstrap%20%2B%20jQuery%20note" target="_blank">code</a> ｜ <a href="https://second9040.github.io/portfolio/[JQuery]%20Bootstrap%20+%20jQuery%20note/Bootstrap%20+%20jQuery%20note.html" target="_blank">demo</a>   
 Bootstap - 使用 Bootstap 框架完成網頁自適應功能與基礎設計模板   
-jQuery - 使用 jQuery 函式庫完成常見的 javascript 函數功能   
+   jQuery - 使用 jQuery 函式庫完成常見的 javascript 函數功能   
+   動態目錄位置提示 - 使用 jQuery 抓取元素 id 生成對應元素完成功能   
+   深淺色主題 - 使用 jQuery 選擇器操作元素樣式，一鍵更換網站主題色   
  
  * 進度條 <a href="https://github.com/second9040/portfolio/tree/master/%5BReact%5D%20ProgressBar" target="_blank">code</a> ｜ <a href="https://second9040.github.io/portfolio/[React]%20ProgressBar/ProgressBar.html" target="_blank">demo</a>   
    React Effect Hook - 使用 function component 中的 side effect   

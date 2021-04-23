@@ -52,7 +52,7 @@ export default Vue.extend({
   },  
   methods: {
     scrollTo (pos) {
-      console.log(pos)
+      this.clickCollapseBtn('closeBtn') 
       document.querySelector(`#${pos}`).scrollIntoView({
         behavior: "smooth",
       });

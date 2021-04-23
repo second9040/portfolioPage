@@ -1,45 +1,47 @@
 <template>
   <div class="header"  :class="{ 'hideHeader': !showHeader }"> 
     <div class="info">
-      <div class="photo"></div>
-      <div class="name">
-        <p> Carla | 林鈺琪 </p>
-        <div v-if="PCSize" class="workLink">
-          <p v-for="(item,key) in workList" :key="key">{{item[2][0]}}</p>
-        </div>
-        <p> HTML CSS SCSS RWD</p>
-        <p> JAVASCRIPT TYPESCRIPT </p>
-        <p> VUE REACT REACT NATIVE</p>
-        <p> WEBPACK GITHUB </p>
-        <p class="copyright">Copyright © 2021 Carla Lin All rights reserved.</p>
+      <div id="toc">
+        <ul>
+          <li v-for="(item, index) in tocContentList" :key="item.id" @click="scrollTo(item.id)" :class="{'active': index === 0}"><a>{{ item.id.toUpperCase() }}</a> </li>
+        </ul>
       </div>
     </div>
+    <p class="copyright">Copyright © 2021 Carla Lin All rights reserved.</p>
     <div class="collapseBtn" @click="clickCollapseBtn('collapseBtn')" v-if="showCollapseBtn">
       <div class="collapseIcon"></div>
     </div>
     <div class="toolField">
+      <h2 @click="$router.push('#')">Carla | portfolio</h2>
       <div class="closeBtn" @click="clickCollapseBtn('closeBtn')" v-if="showCloseBtn"><i class="fas fa-times"></i></div>
-      <div class="color purple" @click="changeColor('rgb(117, 144, 206)')"></div>
-      <div class="color green" @click="changeColor('rgb(37, 202, 106)')"></div>
-      <div class="color pink" @click="changeColor('rgb(238, 148, 148)')"></div>
     </div>
   </div>
 </template>
 <script>
 import Vue from 'vue';
+import { eventBus } from '../router/router.js';
 export default Vue.extend({
   data() {
     return {
       showCollapseBtn: false,
       showCloseBtn: false,
-      PCSize: false
+      PCSize: false,
+      tocContentList: []
     }
   },
-  mounted() {
+  mounted () {
     window.addEventListener('resize', this.checkSize)
     this.checkSize()
-    console.log('header!')
-    console.log(this.workList)
+
+    // table of content
+    let titleList = document.getElementsByClassName('title')
+    for (let item in titleList) {
+      let title = titleList[item] 
+      if (title.id) {
+        this.tocContentList.push(title)
+      }
+    }
+    eventBus.$emit('tocContentList', this.tocContentList);
   },
   props: {
     showHeader: {
@@ -49,6 +51,12 @@ export default Vue.extend({
     workList: {}
   },  
   methods: {
+    scrollTo (pos) {
+      console.log(pos)
+      document.querySelector(`#${pos}`).scrollIntoView({
+        behavior: "smooth",
+      });
+    },
     checkSize() {
       this.showCollapseBtn = window.innerWidth > 1000 ? false : true
       this.showCloseBtn = window.innerWidth < 800 ? true : false
@@ -60,19 +68,43 @@ export default Vue.extend({
       if ((this.showCloseBtn && btnName == 'closeBtn') || ((!this.showHeader || !this.showCloseBtn) && btnName == 'collapseBtn')) {
         this.$emit('clickBtn')
       }
-    },
-    changeColor(color) {
-      document.documentElement.style.setProperty(`--mainColor1`, `${color}`);
     }
   },
-  beforeDestroy() {
-    window.removeEventListener('resize', this.checkSize)
-  }
 })
 </script>
+<style lang="scss">
+@import 'tocbot/src/scss/tocbot';
+.toc-list {
+  text-align: left;
+  font-size: 20px;
+  & .toc-list-item {
+    margin: 10px 0;
+    &::marker {
+      content: none;
+    }
+    & a {
+      text-decoration: none;
+    }
+    & .is-active-link {
+      color: #051f57;
+      position: relative;
+      &::before {
+        content: '';
+        position: absolute;
+        background: #051f57;
+        width: 3px;
+        height: 20px;
+        left: -10px;
+        top: 3px;
+      }
+    }
+  }
+  
+}
+</style>
 <style lang="css">
 :root {
-  --mainColor1: rgb(117, 144, 206);
+  --mainColor1: #5577dd;
 }
 
 .header {
@@ -85,7 +117,7 @@ export default Vue.extend({
 .header {
   color: #fff;
   position: fixed;
-  width: 400px;
+  width: 250px;
   top: 0;
   left: 0;
   text-align: center;
@@ -94,45 +126,61 @@ export default Vue.extend({
   & .info {
     position: absolute;
     bottom: 0;
-    width: 400px;
-    & .photo {
-      margin: 0 auto;
-      width: 200px;
-      height: 200px;
-      border-radius: 50%;
-      background-image: url('./../assets/images/photo.png');
-      background-repeat: no-repeat;
-      background-size: cover;
-      background-position: bottom;
-      opacity: 0.7;
-      @media all and (max-width: 420px) {
-        width: 150px;
-        height: 150px;
+    width: 250px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    & #toc {
+      width: 100%;
+      & ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        & li {
+          position: relative;
+          padding: 5px;
+          & a {
+            text-decoration: none;
+            color: #051f57;
+            &:active, :hover {
+              color: initial;
+            }
+          }
+          &.active, &:hover {
+            cursor: pointer;
+            color: #051f57;
+            &::before {
+              content: '';
+              position: absolute;
+              background: #fff;
+              width: 3px;
+              height: 25px;
+              margin-left: -15px;
+              top: 3px;
+            }
+            & a {
+              color: #fff;
+              font-weight: bold;
+            }
+          }
+        }
       }
-    }
-    & .name {
-      padding: 20px;
-      font-size: 24px;
-      font-family: 'Helvetica';
-      padding-top: 15px;
-      @media all and (max-width: 420px) {
-        font-size: 16px;
-        word-spacing: 3px;
-      }
-    }
+    }     
     & p {
       margin: 10px 0;
-      &.copyright {
-        margin-top: 50px;
-      }
     }
-    & .workLink {
-      margin: 20px 0;
-    }
+  }
+  & .copyright {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
   }
   & .collapseBtn {
     position: absolute;
-    left: 380px;
+    left: 230px;
     top: 50%;
     transform: translateY(-50%);
     z-index: 100;
@@ -141,7 +189,8 @@ export default Vue.extend({
     background: var(--mainColor1);
     border-radius: 50%;
     transition: all 1.2s;
-    &:hover{
+    opacity: 0.5;
+    &:hover {
       cursor: pointer;
     }
     & .collapseIcon {
@@ -164,47 +213,23 @@ export default Vue.extend({
       border-radius: 50px;
       border: solid 2px;
       padding: 5px 3px 2px;
-      top: 0;
+      top: -20px;
       right: 0;
       margin: 10px;
       &:hover {
         cursor: pointer;
       }
     }
-    & .color {
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      border-radius: 50px;
-      margin: 15px;
-      border: solid 1px;
-      top: 0;
-      &:hover {
-        cursor: pointer;
-      }
-      &.purple {
-        background: rgb(117, 144, 206);
-        right: 40px;
-      }
-      &.green {
-        background: rgb(37, 202, 106);
-        right: 70px;
-      }
-      &.pink {
-        background: rgb(238, 148, 148);
-        right: 100px;
-      }
-    }
   }
   &.hideHeader {
-    left: -400px;    
+    left: -250px;    
     & .collapseIcon {
       margin: 10px 0 0 20px;
       border-left-color: #fff;
       border-right-color: transparent;
     }
   }
-  @media all and (max-width: 800px) {
+  @include rwd($pad) {
     &:not(.hideHeader) {
       width: 100%;
       & .info {
@@ -219,7 +244,6 @@ export default Vue.extend({
         }
       }  
     }
-
   }
 }  
 </style>

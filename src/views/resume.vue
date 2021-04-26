@@ -87,7 +87,7 @@ export default Vue.extend({
       left: -7px;
     }
     & .text {
-      font-size: 14px;
+      font-size: 16px;
     }
     & .left {
       transform: translateX(-125%);

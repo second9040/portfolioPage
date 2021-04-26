@@ -196,8 +196,13 @@ export default Vue.extend({
   padding: 0 10%;
   transition: all 0.8s;
   background-image: url('../assets/images/background.png');
+  @include rwd($padPro) {
+    padding: 0 60px;
+  }
   @include rwd($pad) {
     left: 50%;
+    margin-left: 0;
+    width: initial;
   }
   &::-webkit-scrollbar {
     display: none;
@@ -209,13 +214,14 @@ export default Vue.extend({
     margin: 0;
     text-align: center;
     font-size: 2em;
-    padding: 100px 0 10px;
+    padding: 50px 0 10px;
     border-bottom: solid 3px var(--mainColor1);
     color: #555;
     &:first-child {
       padding: 10px;
     }
     @include rwd($pad) {
+      padding: 20px 0 10px;
       font-size: 1.5em;
     }
   }

@@ -57,14 +57,14 @@ export default Vue.extend({
         behavior: "smooth",
       });
     },
-    checkSize() {
+    checkSize () {
       this.showCollapseBtn = window.innerWidth > 1000 ? false : true
       this.showCloseBtn = window.innerWidth < 800 ? true : false
       this.PCSize = window.innerWidth > 420 && window.innerHeight > 840 ? true : false
       let windowsVH = window.innerHeight / 100;
       document.querySelector('.header').style.setProperty('--vh', windowsVH + 'px');      
     },
-    clickCollapseBtn(btnName) {
+    clickCollapseBtn (btnName) {
       if ((this.showCloseBtn && btnName == 'closeBtn') || ((!this.showHeader || !this.showCloseBtn) && btnName == 'collapseBtn')) {
         this.$emit('clickBtn')
       }

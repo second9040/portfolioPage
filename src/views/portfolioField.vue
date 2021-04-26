@@ -150,7 +150,7 @@ export default Vue.extend({
 
       if (window.scrollY > this.contentList[i].offsetTop - 100) {
           let index = i;
-          if (window.scrollY > document.body.scrollHeight - 900) {
+          if (window.scrollY > document.body.scrollHeight - window.screen.height - 300) {
             index = i + 1 // for 最後一個太短根本滑不到的 contact ^^
           }
           document.getElementById('toc').getElementsByTagName('li')[index].classList.add("active");

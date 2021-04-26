@@ -12,7 +12,7 @@
       <div class="collapseIcon"></div>
     </div>
     <div class="toolField">
-      <h2 @click="$router.push('#')">Carla | portfolio</h2>
+      <h2 @click="scrollTo('about')">Carla | portfolio</h2>
       <div class="closeBtn" @click="clickCollapseBtn('closeBtn')" v-if="showCloseBtn"><i class="fas fa-times"></i></div>
     </div>
   </div>
@@ -206,6 +206,9 @@ export default Vue.extend({
   }
   & .toolField {
     position: relative;
+    & h2:hover {
+      cursor: pointer;
+    }
     & .closeBtn {
       position: absolute;
       width: 20px;

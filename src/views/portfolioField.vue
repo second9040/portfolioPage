@@ -200,6 +200,7 @@ export default Vue.extend({
     padding: 0 60px;
   }
   @include rwd($pad) {
+    padding: 0 20px;
     left: 50%;
     margin-left: 0;
     width: initial;
@@ -351,10 +352,6 @@ export default Vue.extend({
     left: 0;
     right: 0;
     margin: 0;
-    @include rwd($padPro) {
-      width: 80%;
-      padding: 0 10%;
-    }
     & .work {
       width: 32%;
       &:nth-child(2n-1) {

@@ -91,6 +91,12 @@ export default Vue.extend({
   border-radius: 10px;
   z-index: 2;
   padding: 40px 40px 60px;
+  @include rwd($pad) {
+    min-width: initial;
+    width: calc(90vw - 60px);
+    left: 50%;
+    padding: 50px 30px;
+  }
   & div {
     margin: 10px 0;
     & p {
